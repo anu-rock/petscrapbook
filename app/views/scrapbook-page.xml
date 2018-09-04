@@ -1,0 +1,6 @@
+<Page loaded="onLoaded">
+    <StackLayout>
+        <DatePicker />
+        <ListPicker items="{{ items }}" />
+    </StackLayout>
+</Page>
