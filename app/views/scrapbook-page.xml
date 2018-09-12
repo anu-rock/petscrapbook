@@ -1,11 +1,17 @@
 <Page loaded="onLoaded">
+    <Page.actionBar>
+        <ActionBar title="Pet Scrapbook">
+            <ActionItem tap="onAddTap" text="Add"
+                ios.position="right" android.position="actionBar" />
+        </ActionBar>
+    </Page.actionBar>
     <StackLayout>
-        <Label text="Title: " />
-        <TextField class="header" text="{{title}}" />
-        <Label text="Age: " />
-        <DatePicker date="{{date}}" />
-        <Label text="Gender: " />
-        <ListPicker items="{{genders}}" selectedIndex="{{gender}}" />
-        <Button tap="onTap" text="Done" />
+        <ListView items="{{ pages }}" itemTap="onItemTap">
+            <ListView.itemTemplate>
+                <StackLayout>
+                    <Label text="{{ title, title + ' Scrapbook Page' }}" />
+                </StackLayout>
+            </ListView.itemTemplate>
+        </ListView>
     </StackLayout>
 </Page>
