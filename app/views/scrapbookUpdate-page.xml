@@ -4,13 +4,14 @@
             <Label text="{{ title, title + ' Scrapbook Page' }}" />
             <TextField class="header" text="{{ title }}" hint="Enter title..."/>
             <Label text="{{ 'Age: ' + calcAge(dob) + ' years old'}} " />
-            <DatePicker date="{{dob}}" />
+            <DatePicker date="{{ dob }}" />
             <Label text="Gender: " />
             <ListPicker items="{{ genders }}" selectedIndex="{{ gender }}" />
 
             <Image src="{{ image }}" stretch="none" />
-            <Button tap="onAddImageTap" text="Add Image" />
+            <Label text="{{ (lat, long), 'Picture taken at ' + lat + ', ' + long }}" />
 
+            <Button tap="onAddImageTap" text="Add Image" />
             <Button tap="onDoneTap" text="Done" />
         </StackLayout>
     </ScrollView>

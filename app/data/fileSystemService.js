@@ -1,4 +1,5 @@
 var fileSystem = require("file-system");
+var imageModule = require("image-source");
 
 var fileSystemService = function () {
     this.file = fileSystem.knownFolders.documents().getFile("scrapbook.json");
@@ -9,6 +10,11 @@ fileSystemService.prototype.getPages = function () {
     if (this.file.readTextSync().length !== 0) {
       pages = JSON.parse(this.file.readTextSync());
     }
+    pages.forEach(function(page) {
+        if (page.imageBase64 != null) {
+            page.image = imageModule.fromBase64(page.imageBase64);
+        }
+    });
     return pages;
 }
 
@@ -22,7 +28,11 @@ fileSystemService.prototype.savePage = function (scrapbookPage) {
             id: scrapbookPage.id,
             title: scrapbookPage.title,
             gender: scrapbookPage.gender,
-            dob: scrapbookPage.dob
+            dob: scrapbookPage.dob,
+            imageBase64: scrapbookPage.image != null ?
+                scrapbookPage.image.toBase64String("png") : null,
+            lat: scrapbookPage.lat,
+            long: scrapbookPage.long
         };
     }
     else {
@@ -30,7 +40,11 @@ fileSystemService.prototype.savePage = function (scrapbookPage) {
             id: scrapbookPage.id,
             title: scrapbookPage.title,
             gender: scrapbookPage.gender,
-            dob: scrapbookPage.dob
+            dob: scrapbookPage.dob,
+            imageBase64: scrapbookPage.image != null ?
+                scrapbookPage.image.toBase64String("png") : null,
+            lat: scrapbookPage.lat,
+            long: scrapbookPage.long
         });
     }
     var json = JSON.stringify(pages);

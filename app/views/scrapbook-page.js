@@ -8,10 +8,9 @@ function scrapbookPageModel(id) {
     model.id = id;
     model.genders = ["Female", "Male", "Other"];
     model.calcAge = function(date) {
-        var dob = new Date(date);
+        var dob = Number(new Date(date));
         var now = Date.now();
-        var diff = Math.abs(now - date) / 1000 / 31536000;
-        console.log(diff);
+        var diff = Math.abs(now - dob) / 1000 / 31536000;
         return diff.toFixed(1);
     };
     return model;
@@ -28,9 +27,10 @@ exports.onLoaded = function(args) {
             var model = new scrapbookPageModel(item.id);
             model.title = item.title;
             model.gender = item.gender;
-            model.year = item.year;
-            model.month = item.month;
-            model.day = item.day;
+            model.dob = item.dob;
+            model.image = item.image;
+            model.lat = item.lat;
+            model.long = item.long;
             scrapbook.pages.push(model);
         });
     }
