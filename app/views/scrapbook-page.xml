@@ -6,11 +6,11 @@
         </ActionBar>
     </Page.actionBar>
     <StackLayout>
-        <ListView items="{{ pages }}" itemTap="onItemTap">
+        <ListView items="{{ pages }}" itemTap="onItemTap" class="list-group">
             <ListView.itemTemplate>
-                <StackLayout orientation="horizontal">
-                    <Image src="{{ image }}" width="64" />
-                    <Label text="{{ title, title + ' Scrapbook Page' }}" />
+                <StackLayout orientation="horizontal" class="list-group-item">
+                    <Image src="{{ image }}" class="thumb img-circle" />
+                    <Label text="{{ title, title + ' Scrapbook Page' }}" class="list-group-item-text" />
                 </StackLayout>
             </ListView.itemTemplate>
         </ListView>

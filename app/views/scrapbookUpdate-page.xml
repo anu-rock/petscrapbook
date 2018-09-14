@@ -1,15 +1,28 @@
 <Page loaded="onLoaded">
     <ScrollView>
-        <StackLayout>
-            <Label text="{{ title, title + ' Scrapbook Page' }}" />
-            <TextField class="header" text="{{ title }}" hint="Enter title..."/>
-            <Label text="{{ 'Age: ' + calcAge(dob) + ' years old'}} " />
-            <DatePicker date="{{ dob }}" />
-            <Label text="Gender: " />
-            <ListPicker items="{{ genders }}" selectedIndex="{{ gender }}" />
+        <StackLayout class="form">
+            <Label class="h2" text="{{ title, title + ' Scrapbook Page' }}" />
+            <StackLayout class="input-field">
+                <Label class="label" text="Name:" />
+                <TextField class="input" text="{{ title }}" hint="Enter title..."/>
+            </StackLayout>
+            <StackLayout class="input-field">
+                <Label class="label" text="{{ dob, 'Birth date: ' + calcAge(dob) + ' years old' }}" />
+                <DatePicker date="{{ dob }}" />
+            </StackLayout>
+            <StackLayout class="input-field">
+                <Label class="label" text="Gender:" />
+                <ListPicker items="{{ genders }}" selectedIndex="{{ gender }}" />
+            </StackLayout>
 
-            <Image src="{{ image }}" stretch="none" />
-            <Label text="{{ (lat, long), 'Picture taken at ' + lat + ', ' + long }}" />
+            <StackLayout class="input-field">
+                <Label class="label" text="Image:" />
+                <Image class="input" src="{{ image }}" stretch="none" />
+                <Label text="{{ (lat, long),
+                    (lat === undefined || long === undefined) ?
+                    '' :
+                    'Picture taken at ' + lat + ', ' + long }}" />
+            </StackLayout>
 
             <Button tap="onAddImageTap" text="Add Image" />
             <Button tap="onDoneTap" text="Done" />
