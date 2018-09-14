@@ -4,8 +4,10 @@ var image = require("image-source");
 var geolocation = require("nativescript-geolocation");
 var fileSystemService = require("~/data/fileSystemService");
 
+var page;
+
 exports.onLoaded = function(args) {
-    var page = args.object;
+    page = args.object;
     var scrapbookPage = page.navigationContext.model
     page.bindingContext = scrapbookPage;
 };
@@ -34,6 +36,20 @@ exports.onAddImageTap = function(args) {
                 scrapbookPage.set("long", location.longitude);
             });
         });
+};
+
+exports.onBirthDateTap = function(args) {
+    var modalPageModule = "views/selectDate-page";
+    var context = { dob: page.bindingContext.dob };
+    var fullscreen = true;
+    page.showModal(
+        modalPageModule,
+        context,
+        function closeCallback(dob) {
+            page.bindingContext.set("dob", dob);
+        },
+        fullscreen
+    );
 };
 
 exports.onDoneTap = function(args) {

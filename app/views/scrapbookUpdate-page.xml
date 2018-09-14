@@ -7,8 +7,12 @@
                 <TextField class="input" text="{{ title }}" hint="Enter title..."/>
             </StackLayout>
             <StackLayout class="input-field">
-                <Label class="label" text="{{ dob, 'Birth date: ' + calcAge(dob) + ' years old' }}" />
-                <DatePicker date="{{ dob }}" />
+                <!-- <Label class="label" text="{{ (dob), 'Birth date: ' + 
+                    (dob === null ? '' : '(' + calcAge(dob) + ' years old)' ) }}" /> -->
+                <Label text="Birth date:" class="label" />
+                <TextField class="input" editable="false"
+                    text="{{ dob, dob | dateConverter(dateFormat) }}"
+                    tap="onBirthDateTap" hint="Enter a birth date..." />
             </StackLayout>
             <StackLayout class="input-field">
                 <Label class="label" text="Gender:" />
