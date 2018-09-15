@@ -52,6 +52,20 @@ exports.onBirthDateTap = function(args) {
     );
 };
 
+exports.onGenderTap = function(args) {
+    var modalPageModule = "views/selectGender-page";
+    var context = { gender: page.bindingContext.gender };
+    var fullscreen = true;
+    page.showModal(
+        modalPageModule,
+        context,
+        function closeCallback(gender) {
+            page.bindingContext.set("gender", gender);
+        },
+        fullscreen
+    );
+};
+
 exports.onDoneTap = function(args) {
     var page = args.object;
     var scrapbookPage = page.bindingContext;

@@ -17,9 +17,17 @@ var dateConverter = function(value, format) {
     return result;
 };
 
+var genders = ["Female", "Male", "Others"];
+
+var indexToGender = function(index) {
+    return genders[index];
+}
+
 var resources = application.getResources();
 resources.dateConverter = dateConverter;
 resources.dateFormat = "MM/DD/YYYY";
+resources.genders = genders;
+resources.indexToGender = indexToGender;
 
 application.run({ moduleName: "app-root" });
 

@@ -6,7 +6,6 @@ var fileSystemService = require("~/data/fileSystemService");
 function scrapbookPageModel(id) {
     var model = new observable.Observable();
     model.id = id;
-    model.genders = ["Female", "Male", "Other"];
     model.calcAge = function(date) {
         var dob = Number(new Date(date));
         var now = Date.now();
